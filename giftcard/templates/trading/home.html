@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Available Gift Cards</h2>
+<div class="row">
+    {% for gift_card in gift_cards %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ gift_card.retailer }}</h5>
+                    <p class="card-text">Value: ${{ gift_card.value }}</p>
+                    <p class="card-text">Expires: {{ gift_card.expiration_date }}</p>
+                    {% if user.is_authenticated and user != gift_card.owner %}
+                        <a href="{% url 'trade_giftcard' gift_card.pk %}" class="btn btn-primary">Trade</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No gift cards available.</p>
+    {% endfor %}
+</div>
+{% endblock %}
