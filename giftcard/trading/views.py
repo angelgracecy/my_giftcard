@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
-from .models import GiftCard, Trade, Rating
+from .models import GiftCard, Trade, Rating, User
 from .forms import CustomUserCreationForm, GiftCardForm, RatingForm
 
 def home(request):
